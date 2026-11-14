@@ -1,0 +1,48 @@
+import streamlit as st
+import random
+
+# 設定手機版面配置
+st.set_page_config(page_title="專屬情侶互動小遊戲", page_icon="❤️", layout="centered")
+
+st.title("❤️ 專屬情侶互動小遊戲")
+st.write("輪流按下按鈕，看看今天誰要接受甜蜜挑戰！")
+
+# 使用分頁切換不同遊戲模式
+tab1, tab2 = st.tabs(["🎲 真心話大冒險", "🍽️ 今天約會吃什麼"])
+
+# --- 遊戲一：真心話大冒險 ---
+with tab1:
+    st.subheader("輪到誰抽牌了？")
+    
+    truths = [
+        "【真心話】第一次見到我時，心裡的第一印象是什麼？",
+        "【真心話】說出三個你覺得我最可愛的地方！",
+        "【真心話】我們在一起後，哪一件事讓你覺得最感動？",
+        "【真心話】老實說，有沒有哪一次其實在吃醋但沒說出口？"
+    ]
+    
+    dares = [
+        "【大冒險】深情看著對方的眼睛 10 秒鐘不能笑！",
+        "【大冒險】給對方一個大大的擁抱，並說出「我愛你」。",
+        "【大冒險】幫對方按摩肩膀 1 分鐘。",
+        "【大冒險】現在立刻拍一張兩人的搞怪合照！"
+    ]
+
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("💬 抽一張真心話", use_container_width=True):
+            st.info(random.choice(truths))
+    with col2:
+        if st.button("🔥 抽一張大冒險", use_container_width=True):
+            st.warning(random.choice(dares))
+
+# --- 遊戲二：約會美食抽籤 ---
+with tab2:
+    st.subheader("解決情侶世紀難題：等一下吃什麼？")
+    
+    foods = ["日式拉麵 🍜", "韓式烤肉 🥩", "浪漫義大利麵 🍝", "溫暖小火鍋 🍲", "夜市小吃巡禮 🍢", "早午餐咖啡廳 ☕"]
+    
+    if st.button("🎰 幫我們決定今天吃什麼！", use_container_width=True):
+        chosen = random.choice(foods)
+        st.balloons()  # 觸發氣球慶祝動畫
+        st.success(f"決定就是它了：**{chosen}**！")
